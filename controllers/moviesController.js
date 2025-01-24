@@ -12,3 +12,18 @@ export const getAllMovies = (req, res) => {
         }
     });
 };
+
+export const getMovieById = (req, res) => {
+    const id = req.params.id;
+    const query = "SELECT * FROM movies WHERE id = ?";
+    db.query(query, [id], (err, results) => {
+        if (err) {
+            console.error("Errore durante il recupero del film:", err);
+            res.status(500).json({ error: "Errore durante il recupero del film" });
+        }
+        if (results.length === 0) {
+            return res.status(404).json({ error: "Film non trovato" });
+        };
+        res.json(results);
+    });
+};
