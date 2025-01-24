@@ -1,0 +1,28 @@
+{
+  "name": "webapp-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file=.env server.js",
+    "dev": "node --env-file=.env --watch server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andre050101/webapp-express.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Andre050101/webapp-express/issues"
+  },
+  "homepage": "https://github.com/Andre050101/webapp-express#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mysql2": "^3.12.0"
+  }
+}
