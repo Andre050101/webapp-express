@@ -13,6 +13,8 @@ app.get("/", (req, res) => {
     res.send("Benvenuto nel server di WebApp Express!");
 });
 
+app.use("/public", express.static("public"));
+
 app.use("/movies", moviesRouter);
 
 

@@ -8,6 +8,11 @@ export const getAllMovies = (req, res) => {
             res.status(500).json({ error: "Errore durante il recupero dei film" });
         }
         else{
+            const movies = results.map((movie) => ({
+                ...movie,
+                image: movie.image ? `${req.protocol}://${req.get("host")}/public/${movie.image}` 
+                : null,
+            }));
             res.json(results);
         }
     });
