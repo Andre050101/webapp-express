@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
-import { db } from "./config/db.js";
+import moviesRouter from "./routers/movies.js";
+
 
 dotenv.config();
 
@@ -11,6 +12,10 @@ app.use(express.json());
 app.get("/", (req, res) => {
     res.send("Benvenuto nel server di WebApp Express!");
 });
+
+app.use("/movies", moviesRouter);
+
+
 
 app.listen(process.env.PORT || 3000, () => {
     console.log(`Server avviato su http://localhost:${process.env.PORT || 3000}`);
