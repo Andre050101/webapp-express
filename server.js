@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import moviesRouter from "./routers/movies.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 import { notFound } from "./middlewares/notFound.js";
+import cors from "cors";
 
 //Configurazione dotenv per la lettura delle variabili d'ambiente
 dotenv.config();
@@ -31,6 +32,9 @@ app.use(notFound);
 
 //Gestione errori
 app.use(errorHandler);
+
+//Configurazione CORS
+app.use(cors());
 
 //Avvio del server
 app.listen(process.env.PORT || 3000, () => {
