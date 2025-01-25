@@ -15,12 +15,12 @@ export const getAllMovies = (req, res) => {
                     .toLowerCase()
                     .replace(/[^a-z0-9]/g, "")}.jpg`;
 
-                return {
-                    ...movie,
-                    image: movie.image
-                        ? `${req.protocol}://${req.get("host")}/public/${movie.image}`
-                        : `${req.protocol}://${req.get("host")}/public/${defaultImage}`,
-                };
+                    return {
+                        ...movie,
+                        image: movie.image && movie.image.trim() !== ""
+                            ? `${req.protocol}://${req.get("host")}/public/${movie.image}`
+                            : `${req.protocol}://${req.get("host")}/public/${defaultImage}`,
+                    };
             });
             res.json(movies);
         }
