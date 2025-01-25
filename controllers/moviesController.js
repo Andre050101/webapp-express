@@ -39,6 +39,14 @@ export const getMovieById = (req, res) => {
         if (results.length === 0) {
             return res.status(404).json({ error: "Film non trovato" });
         };
-        res.json(results);
+        const movie = results[0];
+        const defaultImage = `${movie.title
+            .toLowerCase()
+            .replace(/[^a-z0-9]/g, "")}.jpg`;
+        movie.image = movie.image
+            ? `${req.protocol}://${req.get("host")}/public/${movie.image}`
+            : `${req.protocol}://${req.get("host")}/public/${defaultImage}`;
+        
+            res.json(movie);
     });
 };
