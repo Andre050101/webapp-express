@@ -9,8 +9,12 @@ import cors from "cors";
 //Configurazione dotenv per la lettura delle variabili d'ambiente
 dotenv.config();
 
+
 //Inizializzazione server
 const app = express();
+
+//Configurazione CORS
+app.use(cors());
 
 //Configurazione server
 app.use(express.json());
@@ -33,8 +37,6 @@ app.use(notFound);
 //Gestione errori
 app.use(errorHandler);
 
-//Configurazione CORS
-app.use(cors());
 
 //Avvio del server
 app.listen(process.env.PORT || 3000, () => {
