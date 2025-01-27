@@ -54,8 +54,16 @@ export const getMovieById = (req, res) => {
         // Controlliamo se l'immagine esiste nella cartella 'public'
         movie.image = fs.existsSync(imagePath)
             ? `${req.protocol}://${req.get("host")}/public/${imageFileName}`
-            : `${req.protocol}://${req.get("host")}/public/default.jpg`;
+            : `${req.protocol}://${req.get("host")}/${defaultImagePath}`;
 
-        res.json(movie);
+        const reviewQuery = "Select * from reviews where movie_id = ?";
+        db.query(reviewQuery, [id], (err, results) => {
+            if (err) {
+                console.error("Errore durante il recupero delle recensioni:", err);
+                return res.status(500).json({ error: "Errore durante il recupero delle recensioni" });
+            }
+            movie.reviews = results;
+            res.json(movie);
+        });
     });
 };
