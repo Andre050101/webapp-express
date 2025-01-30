@@ -2,7 +2,7 @@ import { db } from "../config/db.js";
 
 export const getAllMovies = async () => {
     const query = "SELECT * FROM movies";
-    const [results] = await db.query(query);
+    const [results] = await db.promise().query(query);
     return results;
 };
 

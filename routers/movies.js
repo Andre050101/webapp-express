@@ -1,16 +1,16 @@
 //Import necessari
 import express from "express";
-import { getAllMovies, getMovieById } from "../controllers/moviesController.js";
+import { fetchAllMovies, fetchMovieById } from "../controllers/moviesController.js";
 
 //Configurazione router
 const router = express.Router();
 
 //Configurazione rotte
 //Rotta index
-router.get("/", getAllMovies);
+router.get("/", fetchAllMovies);
 
 //Rotta show
-router.get("/:id", getMovieById);
+router.get("/:id", fetchMovieById);
 
 
 //Esportazione router
